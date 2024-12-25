@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            /* Set the background color to black */
+            background: url('./christmast_bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #snowfall {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: snowfallAnimation linear infinite;
+            animation-duration: 2s;
+        }
+
+        #gift-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            font-size: 50px;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gift {
+            width: 100%;
+            height: 100%;
+        }
+
+        #message {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center !important;
+            position: fixed;
+            font-size: 24px;
+            color: #bd3634;
+            text-align: center;
+            z-index: 2;
+            max-width: 80%;
+            min-height: 60%;
+            padding: 20px;
+        }
+
+        .message-letter {
+            padding: 10px;
+            border-radius: 10px;
+            font-family: cursive;
+            font-size: 20px;
+            font-style: italic;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            background-color: rgba(154, 222, 154, .4);
+        }
+        .kiten {
+            position: absolute;
+            right: 50px;
+            bottom: 30px;
+            color: red;
+            font-size: 12px;
+            width: 100%;
+            text-align: right;
+        }
+
+        @keyframes snowfallAnimation {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        @keyframes rotateGift {
+            0% {
+                transform: rotateZ(0deg);
+            }
+
+            100% {
+                transform: rotateZ(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="snowfall"></div>
+    <div id="gift-box" onclick="showMessage()"><img class="gift" src="./gift.png" /></div>
+    <div id="message">
+        <p class="message-letter">
+            Merry Christmas emyeu! ☃<br>
+            Chúc em giáng sinh vui vẻ, hay ăn chóng lớn, đặc biệt là iu anh nhìu hơn:))
+            <br> ☃ ☃ ☃ ☃ ☃ ☃ ☃
+        </p>
+    </div>
+    <p class="kiten">From: anhiu cua em</p>
+
+    <script>
+        // Snowfall effect
+        function createSnowflake() {
+            const snowflake = document.createElement("div");
+            snowflake.className = "snowflake";
+            snowflake.style.left = Math.random() * window.innerWidth + "px";
+            document.getElementById("snowfall").appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 100);
+
+        // Show message function
+        function showMessage() {
+            const giftBox = document.getElementById("gift-box");
+            const message = document.getElementById("message");
+
+            // Hide the gift box
+            giftBox.style.display = "none";
+
+            // Show the message
+            message.style.display = "flex";
+
+            // You can customize the duration the message is displayed
+            setTimeout(() => {
+                // Show the gift box again
+                giftBox.style.display = "block";
+                message.style.display = "none";
+            }, 50000);
+        }
+    </script>
+</body>
+
+</html>
